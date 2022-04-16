@@ -3,7 +3,7 @@ from .models import userpost
 class customerform(forms.ModelForm):
     name = forms.CharField(label='Your Name', widget=forms.TextInput(attrs={'class': 'form-control', 
     'placeholder':'Name Here'}), required=True, error_messages={'required':'Must Enter a Correct Name'})
-    address= forms.CharField(label='Your name',widget=forms.Textarea(attrs={'class':'form-control', 'placeholder':'Address here','row':'03','cols':'50'}),error_messages={'required':'Must enter the right address'})
+    address= forms.CharField(label='Your Address',widget=forms.Textarea(attrs={'class':'form-control', 'placeholder':'Address here','row':'03','cols':'50'}),error_messages={'required':'Must enter the right address'})
 
     class Meta:
         model=userpost
