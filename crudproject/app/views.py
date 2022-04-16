@@ -21,7 +21,7 @@ def read(request):
 #Updating the post
 def update(request,pk):
     get_user_data=get_object_or_404(userpost,pk=pk)
-    form= userpost(instance=get_user_data)
+    form= customerform(instance=get_user_data)
     if request.method=='POST':
         form=customerform(request.POST,instance=get_user_data)
         if form.is_valid():
