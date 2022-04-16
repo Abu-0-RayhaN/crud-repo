@@ -28,8 +28,7 @@ def update(request,pk):
             form.save()
             messages.success(request,'User data has been Updated')
             return redirect('read')
-    context={'form':form}
-    return render(request,'update.html',context)
+    return render(request,'update.html',context={'form':form})
 # alternative
 # def update(request,pk):
 #     get_user_data = get_object_or_404(userpost,pk=pk)
