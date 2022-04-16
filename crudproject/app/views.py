@@ -19,31 +19,31 @@ def read(request):
     context ={ 'user_data':user_data}
     return render(request,'read.html',context)
 #Updating the post
-def update(request,pk):
-    get_user_data=get_object_or_404(userpost,pk=pk)
-    form= customerform(instance=get_user_data)
-    if request.method=='POST':
-        form=customerform(request.POST,instance=get_user_data)
-        if form.is_valid():
-            form.save()
-            messages.success(request,'User data has been Updated')
-            return redirect('read')
-    return render(request,'update.html',context={'form':form})
-# alternative
 # def update(request,pk):
-#     get_user_data = get_object_or_404(userpost,pk=pk)
+#     get_user_data=get_object_or_404(userpost,pk=pk)
+#     form= customerform(instance=get_user_data)
 #     if request.method=='POST':
-#         #         ↓ work with a form
-#         form = UserPostForm(request.POST, request.FILES, instance=get_user_data)
+#         form=customerform(request.POST,instance=get_user_data)
 #         if form.is_valid():
 #             form.save()
 #             messages.success(request,'User data has been Updated')
 #             return redirect('read')
-#     else:
-#         #         ↓ work with a form
-#         form= UserPostForm(instance=get_user_data)
-#     context={'form':form}
-#     return render(request,'update.html',context)
+#    return render(request,'update.html',context={'form':form})
+# alternative
+def update(request,pk):
+    get_user_data = get_object_or_404(userpost,pk=pk)
+    if request.method=='POST':
+        #         ↓ work with a form
+        form = customerform(request.POST, request.FILES, instance=get_user_data)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'User data has been Updated')
+            return redirect('read')
+    else:
+        #         ↓ work with a form
+        form= customerform(instance=get_user_data)
+    context={'form':form}
+    return render(request,'update.html',context)
 
 #deleting the post
 def delete(request,pk):
